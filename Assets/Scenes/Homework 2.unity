@@ -677,7 +677,6 @@ GameObject:
   - component: {fileID: 184041537}
   - component: {fileID: 184041536}
   - component: {fileID: 184041535}
-  - component: {fileID: 184041534}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -699,6 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputActions: 1
+  m_PoseProvider: {fileID: 0}
   m_ControllerNode: 5
   m_SelectUsage: 3
   m_ActivateUsage: 2
@@ -709,41 +709,6 @@ MonoBehaviour:
   m_AnimateModel: 0
   m_ModelSelectTransition: 
   m_ModelDeSelectTransition: 
---- !u!114 &184041534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184041532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c780e541fd46346a681f2f0e14a111fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Primary2DAxis:
-    m_Name: Primary 2D Axis
-    m_Touch: 0
-    m_TouchIncluded: 1
-    m_Click: 0
-    m_ClickIncluded: 1
-  m_Trigger:
-    m_Name: Trigger
-    m_Threshold: 0.1
-    m_Axis: 0.9475347
-    m_Button: 1
-    m_ButtonIncluded: 1
-  m_Grip:
-    m_Name: Grip
-    m_Threshold: 0.1
-    m_Axis: 0
-    m_Button: 0
-    m_ButtonIncluded: 1
-  m_PrimaryButton:
-    m_Name: Primary
-    m_Button: 1
-    m_Touch: 1
-    m_TouchIncluded: 0
 --- !u!114 &184041535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1514,7 +1479,6 @@ GameObject:
   - component: {fileID: 425481904}
   - component: {fileID: 425481903}
   - component: {fileID: 425481902}
-  - component: {fileID: 425481901}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -1536,41 +1500,6 @@ Transform:
   m_Father: {fileID: 1508365644}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &425481901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425481899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c780e541fd46346a681f2f0e14a111fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Primary2DAxis:
-    m_Name: Primary 2D Axis
-    m_Touch: 0
-    m_TouchIncluded: 1
-    m_Click: 0
-    m_ClickIncluded: 1
-  m_Trigger:
-    m_Name: Trigger
-    m_Threshold: 0.1
-    m_Axis: 0
-    m_Button: 0
-    m_ButtonIncluded: 1
-  m_Grip:
-    m_Name: Grip
-    m_Threshold: 0.1
-    m_Axis: 0
-    m_Button: 0
-    m_ButtonIncluded: 1
-  m_PrimaryButton:
-    m_Name: Primary
-    m_Button: 0
-    m_Touch: 0
-    m_TouchIncluded: 0
 --- !u!114 &425481902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,6 +1792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
   m_EnableInputActions: 1
+  m_PoseProvider: {fileID: 0}
   m_ControllerNode: 4
   m_SelectUsage: 3
   m_ActivateUsage: 2
@@ -3933,7 +3863,6 @@ GameObject:
   - component: {fileID: 1239841514}
   - component: {fileID: 1239841513}
   - component: {fileID: 1239841512}
-  - component: {fileID: 1239841511}
   - component: {fileID: 1239841516}
   - component: {fileID: 1239841515}
   - component: {fileID: 1239841517}
@@ -3947,99 +3876,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1239841511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239841510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40ca479812484b588ff2a9da88e610d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Rig: {fileID: 1239841512}
-  m_LeftHandController: {fileID: 425481901}
-  m_RightHandController: {fileID: 184041534}
-  m_MoveForward:
-    m_Modifiers: 0
-    m_Key: 119
-  m_MoveBackward:
-    m_Modifiers: 0
-    m_Key: 115
-  m_MoveLeft:
-    m_Modifiers: 0
-    m_Key: 97
-  m_MoveRight:
-    m_Modifiers: 0
-    m_Key: 100
-  m_RotateLeft:
-    m_Modifiers: 0
-    m_Key: 113
-  m_RotateRight:
-    m_Modifiers: 0
-    m_Key: 101
-  m_LookUp:
-    m_Modifiers: 0
-    m_Key: 120
-  m_LookDown:
-    m_Modifiers: 0
-    m_Key: 99
-  m_LeftAxisUp:
-    m_Modifiers: 2
-    m_Key: 105
-  m_LeftAxisDown:
-    m_Modifiers: 2
-    m_Key: 107
-  m_LeftAxisLeft:
-    m_Modifiers: 2
-    m_Key: 106
-  m_LeftAxisRight:
-    m_Modifiers: 2
-    m_Key: 108
-  m_LeftAxisTouch:
-    m_Modifiers: 2
-    m_Key: 111
-  m_LeftAxisClick:
-    m_Modifiers: 2
-    m_Key: 117
-  m_LeftTriggerButton:
-    m_Modifiers: 2
-    m_Key: 109
-  m_LeftGripButton:
-    m_Modifiers: 2
-    m_Key: 44
-  m_LeftPrimaryButton:
-    m_Modifiers: 2
-    m_Key: 46
-  m_RightAxisUp:
-    m_Modifiers: 0
-    m_Key: 105
-  m_RightAxisDown:
-    m_Modifiers: 0
-    m_Key: 107
-  m_RightAxisLeft:
-    m_Modifiers: 0
-    m_Key: 106
-  m_RightAxisRight:
-    m_Modifiers: 0
-    m_Key: 108
-  m_RightAxisTouch:
-    m_Modifiers: 0
-    m_Key: 111
-  m_RightAxisClick:
-    m_Modifiers: 0
-    m_Key: 117
-  m_RightTriggerButton:
-    m_Modifiers: 0
-    m_Key: 109
-  m_RightGripButton:
-    m_Modifiers: 0
-    m_Key: 44
-  m_RightPrimaryButton:
-    m_Modifiers: 0
-    m_Key: 46
 --- !u!114 &1239841512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4047,7 +3883,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239841510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc2e9538b9ba492dbc9a3990d2897e4, type: 3}
   m_Name: 
