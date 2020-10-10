@@ -10,30 +10,38 @@ public class ScaledWalkingEnabler : MonoBehaviour
     private ScaledWalkingProvider scaledWalkingProvider;
     private XRGrabInteractable grabInteractable = null;
 
+    private WalkingProvider walkingProvider;
+
+    private MeshCollider meshCollider;
+
     // Start is called before the first frame update
     void Start()
     {
         scaledWalkingProvider = XRRig.GetComponent<ScaledWalkingProvider>();
+        walkingProvider = XRRig.GetComponent<WalkingProvider>();
         grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.onSelectEnter.AddListener(EnableScaledWalking);
         grabInteractable.onSelectExit.AddListener(DisableScaledWalking);
+        meshCollider = GetComponent<MeshCollider>();
     }
 
     private void EnableScaledWalking(XRBaseInteractor interactor)
     {
-        scaledWalkingProvider.gameObject.SetActive(true);
+        meshCollider.enabled = false;
         scaledWalkingProvider.enabled = true;
+        walkingProvider.enabled = false;
     }
 
     private void DisableScaledWalking(XRBaseInteractor interactor)
     {
-        scaledWalkingProvider.gameObject.SetActive(false);
+        meshCollider.enabled = true;
         scaledWalkingProvider.enabled = false;
+        walkingProvider.enabled = true;
     }
 
     private void OnDestroy()
     {
-        grabInteractable.onSelectEnter.RemoveAllListeners();
-        grabInteractable.onSelectExit.RemoveAllListeners();
+        grabInteractable.onSelectEnter.RemoveListener(EnableScaledWalking);
+        grabInteractable.onSelectExit.RemoveListener(DisableScaledWalking);
     }
 }

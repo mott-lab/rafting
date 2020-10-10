@@ -12,6 +12,10 @@ public class TeleportEnabler : MonoBehaviour
     private TeleportationProvider teleportationProvider;
     private XRGrabInteractable grabInteractable = null;
 
+    private MeshCollider meshCollider;
+
+    private GameObject[] teleportDestinations;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,29 +23,50 @@ public class TeleportEnabler : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.onSelectEnter.AddListener(EnableTeleportation);
         grabInteractable.onSelectExit.AddListener(DisableTeleportation);
+
+        meshCollider = GetComponent<MeshCollider>();
+
+        teleportDestinations = GameObject.FindGameObjectsWithTag("TeleportDestination");
+
+        foreach (GameObject dest in teleportDestinations)
+        {
+            dest.gameObject.SetActive(false);
+        }
     }
 
     private void EnableTeleportation(XRBaseInteractor interactor)
     {
-        teleportationProvider.gameObject.SetActive(true);
+        // Disable mesh collider to prevent movement effects.
+        meshCollider.enabled = false;
         teleportationProvider.enabled = true;
         // Set interactor rays to bezier curves.
-        leftController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
-        rightController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
+        //leftController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
+        //rightController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.BezierCurve;
+
+        foreach (GameObject dest in teleportDestinations)
+        {
+            Debug.Log(dest);
+            dest.gameObject.SetActive(true);
+        }
     }
 
     private void DisableTeleportation(XRBaseInteractor interactor)
     {
-        teleportationProvider.gameObject.SetActive(false);
+        meshCollider.enabled = true;
         teleportationProvider.enabled = false;
         // Reset interactor rays to straight lines.
-        leftController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
-        rightController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
+        //leftController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
+        //rightController.gameObject.GetComponent<XRRayInteractor>().lineType = XRRayInteractor.LineType.StraightLine;
+
+        foreach (GameObject dest in teleportDestinations)
+        {
+            dest.gameObject.SetActive(false);
+        }
     }
 
     private void OnDestroy()
     {
-        grabInteractable.onSelectEnter.RemoveAllListeners();
-        grabInteractable.onSelectExit.RemoveAllListeners();
+        grabInteractable.onSelectEnter.RemoveListener(EnableTeleportation);
+        grabInteractable.onSelectExit.RemoveListener(DisableTeleportation);
     }
 }

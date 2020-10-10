@@ -11,11 +11,13 @@ public class RaftController : MonoBehaviour
     private HeadSteeringProvider headSteeringProvider;
     private bool playerIsOnRaft;
 
+    //public float speed = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         headSteeringProvider = XRRig.GetComponent<HeadSteeringProvider>();
-        Debug.Log(headSteeringProvider.isActiveAndEnabled);
+        //Debug.Log(headSteeringProvider.isActiveAndEnabled);
         playerIsOnRaft = false;
     }
 
@@ -25,6 +27,8 @@ public class RaftController : MonoBehaviour
         if (playerIsOnRaft)
         {
             Vector3 newRaftPos = new Vector3(playerBody.gameObject.transform.position.x, raft.gameObject.transform.position.y, playerBody.gameObject.transform.position.z);
+            // float step = Time.deltaTime * speed;
+            // raft.gameObject.transform.position = Vector3.MoveTowards(transform.position, newRaftPos, step);
             raft.gameObject.transform.position = newRaftPos;
         }
         
@@ -36,7 +40,7 @@ public class RaftController : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             Debug.Log("user ENTER raft");
-            headSteeringProvider.gameObject.SetActive(true);
+            //headSteeringProvider.gameObject.SetActive(true);
             headSteeringProvider.enabled = true;
             playerIsOnRaft = true;
             Debug.Log("head steering is ACTIVE: " + headSteeringProvider.isActiveAndEnabled);
@@ -49,7 +53,7 @@ public class RaftController : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             Debug.Log("user EXIT raft");
-            headSteeringProvider.gameObject.SetActive(false);
+            //headSteeringProvider.gameObject.SetActive(false);
             headSteeringProvider.enabled = false;
             playerIsOnRaft = false;
             Debug.Log("head steering is ACTIVE: " + headSteeringProvider.isActiveAndEnabled);
