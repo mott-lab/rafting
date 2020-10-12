@@ -27,14 +27,14 @@ public class ScaledWalkingEnabler : MonoBehaviour
 
     private void EnableScaledWalking(XRBaseInteractor interactor)
     {
-        meshCollider.enabled = false;
+        //meshCollider.enabled = false;
         scaledWalkingProvider.enabled = true;
         walkingProvider.enabled = false;
     }
 
     private void DisableScaledWalking(XRBaseInteractor interactor)
     {
-        meshCollider.enabled = true;
+        //meshCollider.enabled = true;
         scaledWalkingProvider.enabled = false;
         walkingProvider.enabled = true;
     }

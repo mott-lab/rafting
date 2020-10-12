@@ -65,7 +65,10 @@
     <Compile Include="Assets\Scripts\HeadSteeringProvider.cs" />
     <Compile Include="Assets\Scripts\HumanJoystickProvider.cs" />
     <Compile Include="Assets\Scripts\InteractionHelper.cs" />
+    <Compile Include="Assets\Scripts\OutlineProvider.cs" />
     <Compile Include="Assets\Scripts\RaftController.cs" />
+    <Compile Include="Assets\Scripts\RayOffsetProvider.cs" />
+    <Compile Include="Assets\Scripts\RockMoveEnabler.cs" />
     <Compile Include="Assets\Scripts\ScaledWalkingEnabler.cs" />
     <Compile Include="Assets\Scripts\ScaledWalkingProvider.cs" />
     <Compile Include="Assets\Scripts\TeleportEnabler.cs" />
@@ -675,7 +678,12 @@
       <HintPath>D:/mattg/unity_proj/rafting/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="OEBIF.csproj">
+      <Project>{0C0A81E2-DA95-36A1-B2E5-D12A1E2E42C0}</Project>
+      <Name>OEBIF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

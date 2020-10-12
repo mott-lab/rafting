@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Controller
   - TeleportDestination
+  - BigRock
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Virtual Body
+  - Interactables
+  - NonInteractables
+  - RockInteractable
   - 
   - 
   - 
