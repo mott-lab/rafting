@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CaveRockPositioner.cs" />
+    <Compile Include="Assets\Scripts\DepthRayProvider.cs" />
+    <Compile Include="Assets\Scripts\HeadSteeringEnabler.cs" />
     <Compile Include="Assets\Scripts\HeadSteeringProvider.cs" />
     <Compile Include="Assets\Scripts\HumanJoystickProvider.cs" />
     <Compile Include="Assets\Scripts\InteractionHelper.cs" />

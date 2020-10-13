@@ -23,11 +23,24 @@ public class RockMoveEnabler : MonoBehaviour
     private OutlineProvider leftOutlineProvider;
     private OutlineProvider rightOutlineProvider;
 
+    private XRInteractorLineVisual leftLineVisual;
+    private XRInteractorLineVisual rightLineVisual;
+
+
+
+    public GameObject leftDepthMarker;
+    public GameObject rightDepthMarker;
+
     // Start is called before the first frame update
     void Start()
     {
         leftRayOffsetProvider = leftController.GetComponent<RayOffsetProvider>();
         rightRayOffsetProvider = rightController.GetComponent<RayOffsetProvider>();
+
+
+
+        leftLineVisual = leftController.GetComponent<XRInteractorLineVisual>();
+        rightLineVisual = rightController.GetComponent<XRInteractorLineVisual>();
 
         // Enable or disable rock movement depending on whether wand is picked up
         grabInteractable = GetComponent<XRGrabInteractable>();
@@ -44,30 +57,53 @@ public class RockMoveEnabler : MonoBehaviour
 
     private void EnableRockMove(XRBaseInteractor interactor)
     {
-        leftRayOffsetProvider.enabled = true;
-        rightRayOffsetProvider.enabled = true;
-
-        bigRock.layer = 9;
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = false;
+            leftDepthMarker.gameObject.SetActive(false);
+            rightRayOffsetProvider.enabled = true;
+            //rightDepthMarker.gameObject.SetActive(true);
+            rightOutlineProvider.movingWandPickedUp = true;
+        }
+        else
+        {
+            rightLineVisual.enabled = false;
+            rightDepthMarker.gameObject.SetActive(false);
+            leftRayOffsetProvider.enabled = true;
+            //leftDepthMarker.gameObject.SetActive(true);
+            leftOutlineProvider.movingWandPickedUp = true;
+        }
 
         rockInteractable.trackPosition = true;
         rockInteractable.trackRotation = true;
 
-        leftOutlineProvider.movingWandPickedUp = true;
-        rightOutlineProvider.movingWandPickedUp = true;
+        bigRock.layer = 9;
         //rockInteractable.enabled = true;
     }
 
     private void DisableRockMove(XRBaseInteractor interactor)
     {
-        leftRayOffsetProvider.enabled = false;
-        rightRayOffsetProvider.enabled = false;
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = true;
+            leftDepthMarker.gameObject.SetActive(true);
+            rightRayOffsetProvider.enabled = false;
+            rightDepthMarker.gameObject.SetActive(false);
+            rightOutlineProvider.movingWandPickedUp = false;
+        }
+        else
+        {
+            rightLineVisual.enabled = true;
+            rightDepthMarker.gameObject.SetActive(true);
+            leftRayOffsetProvider.enabled = false;
+            leftDepthMarker.gameObject.SetActive(false);
+            leftOutlineProvider.movingWandPickedUp = false;
+        }
+
         //rockInteractable.enabled = false;
         bigRock.layer = 11;
         rockInteractable.trackPosition = false;
         rockInteractable.trackRotation = false;
-
-        leftOutlineProvider.movingWandPickedUp = false;
-        rightOutlineProvider.movingWandPickedUp = false;
     }
 
     private void OnDestroy()

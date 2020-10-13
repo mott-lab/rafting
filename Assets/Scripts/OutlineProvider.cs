@@ -30,6 +30,8 @@ namespace UnityEngine.XR.Interaction.Toolkit
     public class OutlineProvider : MonoBehaviour
     {
         public bool movingWandPickedUp = false;
+        public AudioSource deniedSound;
+        public AudioSource floatSound;
 
         // The interactor to provide outlines for.
         [SerializeField]
@@ -119,8 +121,31 @@ namespace UnityEngine.XR.Interaction.Toolkit
                     outline = interactable.gameObject.AddComponent<Outline>();
                 }
 
-                // Set the outline's color to the line color 2 effect.
-                outline.color = 2;
+                // Need special cases for the rock so that the float sound can be played
+                if (interactable.gameObject.tag.Equals("BigRock") && !movingWandPickedUp)
+                {
+                    deniedSound.Play();
+                    m_OutlineEffect.lineColor1.r = 255;
+                    m_OutlineEffect.lineColor1.g = 0;
+                    m_OutlineEffect.lineColor1.b = 0;
+                    m_OutlineEffect.fillAmount = 0.000001f;
+                    outline.color = 1;
+                } else if (interactable.gameObject.tag.Equals("BigRock") && movingWandPickedUp)
+                {
+                    outline.color = 2;
+                    floatSound.Play();
+                    m_OutlineEffect.lineColor1.r = 255;
+                    m_OutlineEffect.lineColor1.g = 255;
+                    m_OutlineEffect.lineColor1.b = 0;
+                    m_OutlineEffect.fillAmount = 0.000001f;
+                } else
+                {
+                    outline.color = 2;
+                    m_OutlineEffect.lineColor1.r = 255;
+                    m_OutlineEffect.lineColor1.g = 255;
+                    m_OutlineEffect.lineColor1.b = 0;
+                    m_OutlineEffect.fillAmount = 0.000001f;
+                }
             }
         }
 
@@ -141,6 +166,10 @@ namespace UnityEngine.XR.Interaction.Toolkit
 
                 // Set the outline's color to the line color 0 effect.
                 outline.color = 0;
+                if (interactable.gameObject.tag.Equals("BigRock") && movingWandPickedUp)
+                {
+                    floatSound.Stop();
+                }
             }
         }
 

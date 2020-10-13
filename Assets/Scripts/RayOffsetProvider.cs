@@ -34,6 +34,9 @@ namespace UnityEngine.XR.Interaction.Toolkit
         XRRayInteractor m_RayInteractor;
         public XRRayInteractor RayInteractor { get { return m_RayInteractor; } set { m_RayInteractor = value; } }
 
+        public GameObject DepthMarker;
+        public XRGrabInteractable movingWand;
+
         // Whether the listeners have been added.
         bool listenersAdded;
 
@@ -49,7 +52,13 @@ namespace UnityEngine.XR.Interaction.Toolkit
                 if (grabInteractable != null)
                 {
                     // Set the grab interactable's attach transform to the ray interactor's transform (i.e., the offset).
-                    grabInteractable.attachTransform = RayInteractor.transform;
+                    //if (movingWand.isSelected)
+                    //{
+                    //    grabInteractable.attachTransform = DepthMarker.transform;
+                    //} else
+                    //{
+                        grabInteractable.attachTransform = RayInteractor.transform;
+                    //}
                 }
             }
         }

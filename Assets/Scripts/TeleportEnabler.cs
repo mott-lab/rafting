@@ -16,6 +16,11 @@ public class TeleportEnabler : MonoBehaviour
 
     private GameObject[] teleportDestinations;
 
+    private XRInteractorLineVisual leftLineVisual;
+    private XRInteractorLineVisual rightLineVisual;
+    public GameObject leftDepthMarker;
+    public GameObject rightDepthMarker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +37,9 @@ public class TeleportEnabler : MonoBehaviour
         {
             dest.gameObject.SetActive(false);
         }
+
+        leftLineVisual = leftController.GetComponent<XRInteractorLineVisual>();
+        rightLineVisual = rightController.GetComponent<XRInteractorLineVisual>();
     }
 
     private void EnableTeleportation(XRBaseInteractor interactor)
@@ -45,8 +53,17 @@ public class TeleportEnabler : MonoBehaviour
 
         foreach (GameObject dest in teleportDestinations)
         {
-            Debug.Log(dest);
             dest.gameObject.SetActive(true);
+        }
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = false;
+            leftDepthMarker.gameObject.SetActive(false);
+        }
+        else
+        {
+            rightLineVisual.enabled = false;
+            rightDepthMarker.gameObject.SetActive(false);
         }
     }
 
@@ -61,6 +78,16 @@ public class TeleportEnabler : MonoBehaviour
         foreach (GameObject dest in teleportDestinations)
         {
             dest.gameObject.SetActive(false);
+        }
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = true;
+            leftDepthMarker.gameObject.SetActive(true);
+        }
+        else
+        {
+            rightLineVisual.enabled = true;
+            rightDepthMarker.gameObject.SetActive(true);
         }
     }
 

@@ -14,6 +14,13 @@ public class ScaledWalkingEnabler : MonoBehaviour
 
     private MeshCollider meshCollider;
 
+    public XRController leftController;
+    public XRController rightController;
+    private XRInteractorLineVisual leftLineVisual;
+    private XRInteractorLineVisual rightLineVisual;
+    public GameObject leftDepthMarker;
+    public GameObject rightDepthMarker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +30,9 @@ public class ScaledWalkingEnabler : MonoBehaviour
         grabInteractable.onSelectEnter.AddListener(EnableScaledWalking);
         grabInteractable.onSelectExit.AddListener(DisableScaledWalking);
         meshCollider = GetComponent<MeshCollider>();
+
+        leftLineVisual = leftController.GetComponent<XRInteractorLineVisual>();
+        rightLineVisual = rightController.GetComponent<XRInteractorLineVisual>();
     }
 
     private void EnableScaledWalking(XRBaseInteractor interactor)
@@ -30,6 +40,16 @@ public class ScaledWalkingEnabler : MonoBehaviour
         //meshCollider.enabled = false;
         scaledWalkingProvider.enabled = true;
         walkingProvider.enabled = false;
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = false;
+            leftDepthMarker.gameObject.SetActive(false);
+        }
+        else
+        {
+            rightLineVisual.enabled = false;
+            rightDepthMarker.gameObject.SetActive(false);
+        }
     }
 
     private void DisableScaledWalking(XRBaseInteractor interactor)
@@ -37,6 +57,16 @@ public class ScaledWalkingEnabler : MonoBehaviour
         //meshCollider.enabled = true;
         scaledWalkingProvider.enabled = false;
         walkingProvider.enabled = true;
+        if (interactor.gameObject.name.Equals("LeftHand Controller"))
+        {
+            leftLineVisual.enabled = true;
+            leftDepthMarker.gameObject.SetActive(true);
+        }
+        else
+        {
+            rightLineVisual.enabled = true;
+            rightDepthMarker.gameObject.SetActive(true);
+        }
     }
 
     private void OnDestroy()
